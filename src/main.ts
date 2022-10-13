@@ -26,6 +26,29 @@ WA.onInit().then(() => {
 
 }).catch(e => console.error(e));
 
+WA.room.onEnterLayer("floor").subscribe(() => {
+    WA.room.hideLayer("roof");
+    WA.room.hideLayer("walls-bg-front");
+    WA.room.hideLayer("signs");
+  });
+  
+WA.room.onLeaveLayer("floor").subscribe(() => {
+    WA.room.showLayer("roof");
+    WA.room.showLayer("walls-bg-front");
+    WA.room.showLayer("signs");
+  });
+  WA.room.onEnterLayer("room_walls_remove").subscribe(() => {
+    WA.room.hideLayer("facade");
+    WA.room.hideLayer("facade-furniture-fg");
+    WA.room.hideLayer("facade-furniture-bg");
+  });
+  
+WA.room.onLeaveLayer("room_walls_remove").subscribe(() => {
+    WA.room.showLayer("facade");
+    WA.room.showLayer("facade-furniture-fg");
+    WA.room.showLayer("facade-furniture-bg");
+  });
+
 function closePopUp(){
     if (currentPopup !== undefined) {
         currentPopup.close();
